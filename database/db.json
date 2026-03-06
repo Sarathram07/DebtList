@@ -1,0 +1,28 @@
+{
+  "companies": [
+    {
+      "id": "1",
+      "name": "ABC Ltd",
+      "email": "abc@company.com",
+      "debt": 5000
+    },
+    {
+      "id": "2",
+      "name": "XYZ Corp",
+      "email": "xyz@company.com",
+      "debt": 12000
+    },
+    {
+      "id": "3",
+      "name": "ASD Corp",
+      "email": "asd@company.com",
+      "debt": 12000
+    },
+    {
+      "id": 4,
+      "debt": 32323,
+      "email": "sarathrammsr07@gmail.com",
+      "name": "Sarathram"
+    }
+  ]
+}
