@@ -17,12 +17,6 @@
       "name": "ASD Corp",
       "email": "asd@company.com",
       "debt": 12000
-    },
-    {
-      "id": 4,
-      "debt": 32323,
-      "email": "sarathrammsr07@gmail.com",
-      "name": "Sarathram"
     }
   ]
 }

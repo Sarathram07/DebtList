@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
-}
+  return <div style={{ marginTop: 5 }}>muforge@2026</div>;
+};
 
-export default Footer
+export default Footer;

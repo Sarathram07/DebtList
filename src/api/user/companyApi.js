@@ -12,3 +12,7 @@ export const deleteCompany = (id) => {
 export const addCompany = (data) => {
   return axiosInstance.post(COMPANY_API.CREATE, data);
 };
+
+export const updateCompany = (data) => {
+  return axiosInstance.put(`${COMPANY_API.UPDATE}/${data.id}`, data);
+};

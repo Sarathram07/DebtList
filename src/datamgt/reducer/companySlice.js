@@ -5,40 +5,54 @@ const companySlice = createSlice({
   initialState: {
     companies: [],
     isLoading: false,
-    isUpdated: false,
-    error: null,
+    needToFetch: true,
   },
   reducers: {
     // --------------------------------------------------FETCH COMPANIES---------------------------------------------------
     fetchCompaniesRequest(state) {
-      return { ...state, isLoading: true, error: null };
+      return { ...state, isLoading: true };
     },
     fetchCompaniesSuccess(state, action) {
-      return { ...state, isLoading: false, companies: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        companies: action.payload,
+        needToFetch: false,
+      };
     },
     fetchCompaniesFail(state, action) {
-      return { ...state, isLoading: false, error: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        needToFetch: false,
+        error: action.payload,
+      };
     },
 
     // --------------------------------------------------ADD COMPANY---------------------------------------------------
     addCompanyRequest(state) {
-      return { ...state, isLoading: true, isUpdated: false, error: null };
+      return { ...state, isLoading: true };
     },
     addCompanySuccess(state, action) {
       return {
         ...state,
         isLoading: false,
         companies: [...state.companies, action.payload],
-        isUpdated: true,
+        needToFetch: false,
       };
     },
     addCompanyFail(state, action) {
-      return { ...state, isLoading: false, error: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+        needToFetch: false,
+      };
     },
 
     // --------------------------------------------------UPDATE COMPANY---------------------------------------------------
     updateCompanyRequest(state) {
-      return { ...state, isLoading: true, isUpdated: false, error: null };
+      return { ...state, isLoading: true };
     },
     updateCompanySuccess(state, action) {
       const updatedCompanies = state.companies.map((c) =>
@@ -48,36 +62,40 @@ const companySlice = createSlice({
         ...state,
         isLoading: false,
         companies: updatedCompanies,
-        isUpdated: true,
+        needToFetch: false,
       };
     },
     updateCompanyFail(state, action) {
-      return { ...state, isLoading: false, error: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+        needToFetch: false,
+      };
     },
 
     // --------------------------------------------------DELETE COMPANY---------------------------------------------------
     deleteCompanyRequest(state) {
-      return { ...state, isLoading: true, isUpdated: false, error: null };
+      return { ...state, isLoading: true };
     },
     deleteCompanySuccess(state, action) {
       const filteredCompanies = state.companies.filter(
         (c) => c.id !== action.payload,
       );
-      console.log("Filtered Companies:", filteredCompanies);
       return {
         ...state,
         isLoading: false,
         companies: filteredCompanies,
-        isUpdated: true,
+        needToFetch: false,
       };
     },
     deleteCompanyFail(state, action) {
-      return { ...state, isLoading: false, error: action.payload };
-    },
-
-    // --------------------------------------------------CLEAR UPDATE FLAG---------------------------------------------------
-    clearUpdateBoolean(state) {
-      return { ...state, isUpdated: false };
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+        needToFetch: false,
+      };
     },
 
     // --------------------------------------------------CLEAR ERROR---------------------------------------------------
@@ -101,7 +119,6 @@ export const {
   deleteCompanyRequest,
   deleteCompanySuccess,
   deleteCompanyFail,
-  clearUpdateBoolean,
   clearError,
 } = companySlice.actions;
 

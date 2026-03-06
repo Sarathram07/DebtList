@@ -2,7 +2,9 @@ import {
   deleteCompany,
   getCompanies,
   addCompany,
+  updateCompany,
 } from "../../api/user/companyApi";
+import { showSuccessToast } from "../../utils/toastUtils";
 import {
   fetchCompaniesRequest,
   fetchCompaniesSuccess,
@@ -16,8 +18,6 @@ import {
   deleteCompanyRequest,
   deleteCompanySuccess,
   deleteCompanyFail,
-  clearUpdateBoolean,
-  clearError,
 } from "../reducer/companySlice";
 
 // --------------------------------------------------FETCH COMPANIES---------------------------------------------------
@@ -25,11 +25,11 @@ export const fetchCompanies = async (dispatch) => {
   try {
     dispatch(fetchCompaniesRequest());
     const { data } = await getCompanies();
-    // console.log(data);
     dispatch(fetchCompaniesSuccess(data));
   } catch (error) {
-    console.log(error);
-    dispatch(fetchCompaniesFail(error.response.data.message));
+    console.log("Error while fetching", error.message);
+
+    dispatch(fetchCompaniesFail(error?.message));
   }
 };
 
@@ -38,24 +38,26 @@ export const fetchCompanies = async (dispatch) => {
 export const addNewCompany = (datatoAdd) => async (dispatch) => {
   try {
     dispatch(addCompanyRequest());
-    console.log("add company", datatoAdd);
-    //const { data } = await addCompany(datatoAdd);
+    // console.log("add company", datatoAdd);
     await addCompany(datatoAdd);
     dispatch(addCompanySuccess(datatoAdd));
+    showSuccessToast("Data added successfully");
   } catch (error) {
-    dispatch(addCompanyFail(error.response.data.message));
+    dispatch(addCompanyFail(error?.message));
   }
 };
 
 // --------------------------------------------------UPDATE COMPANY---------------------------------------------------
-export const updateCompany = (data) => async (dispatch) => {
+export const updateCompanyById = (data) => async (dispatch) => {
   try {
-    updateCompanyRequest();
-    console.log("update company", data);
-    // const { data } = await updateCompany(company);
-    // dispatch(updateCompanySuccess(data));
+    dispatch(updateCompanyRequest());
+    //console.log("update company", data);
+    await updateCompany(data);
+    dispatch(updateCompanySuccess(data));
+    showSuccessToast("Data updated successfully");
   } catch (error) {
-    dispatch(updateCompanyFail(error.response.data.message));
+    console.log(error);
+    dispatch(updateCompanyFail(error?.message));
   }
 };
 
@@ -66,7 +68,8 @@ export const deleteCompanyById = (id) => async (dispatch) => {
     dispatch(deleteCompanyRequest());
     await deleteCompany(id);
     dispatch(deleteCompanySuccess(id));
+    showSuccessToast("Data deleted successfully");
   } catch (error) {
-    dispatch(deleteCompanyFail(error.response.data.message));
+    dispatch(deleteCompanyFail(error?.message));
   }
 };
