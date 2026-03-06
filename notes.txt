@@ -1,0 +1,18 @@
+# Project Setup
+ 1. Create an empty folder & take a copy of this repository in it.
+ 2. Navigate to folderName in new terminal. 
+ 3. run the command - npm install ( downloads the dependencies from package.json )
+
+
+# Database Setup
+1. Navigate to database folder in terminal.
+2. Run the command - json-server --watch db.json --port 5000
+   The database in up. ( keep it running )
+   You could see the Endpoint http://localhost:5000/companies in your terminal
+
+# React Server Setup
+ 1. Navigate to folderName in new terminal. 
+ 2. run the command - npm run dev ( to start the server )
+    The server starts with - http://localhost:5173/
+
+
