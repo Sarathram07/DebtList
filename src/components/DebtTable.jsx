@@ -163,13 +163,21 @@ const DebtTable = () => {
   //console.log("Component- re-rendered");
 
   return (
-    <Paper sx={{ padding: 3 }}>
+    <Paper sx={{ padding: 3, bgcolor: "#eef2f6" }}>
       <Typography variant="h5" mb={2}>
         Company Debt Management
       </Typography>
 
       {/* FORM */}
-      <Box sx={{ display: "flex", gap: 2, mb: 3 }} id="debt-form">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+          gap: 2,
+          mb: 3,
+          bgcolor: "#eef2f6",
+        }}
+      >
         <TextField
           label="Company Name"
           {...register("name")}

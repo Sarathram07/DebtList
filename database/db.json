@@ -13,10 +13,10 @@
       "debt": 12000
     },
     {
-      "id": "3",
-      "name": "ASD Corp",
+      "debt": 1000,
       "email": "asd@company.com",
-      "debt": 12000
+      "name": "ASD Corp",
+      "id": "3"
     }
   ]
 }
